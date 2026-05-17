@@ -3,9 +3,10 @@ import numpy as np
 
 
 class Detected:
-    def __init__(self, center, box):
+    def __init__(self, center, box, area):
         self.center = center
         self.box = box
+        self.area = area
     def __repr__(self):
         return f"box: {self.box}; center : {self.center}"
 
@@ -110,7 +111,7 @@ def detect(
         x, y, w, h = cv2.boundingRect(contour)
         box = (x, y, w, h)
 
-        detected_ones.append(Detected(center, box))
+        detected_ones.append(Detected(center, box, area))
 
     return detected_ones
 
